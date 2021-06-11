@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, FlatList, SafeAreaView, Text} from 'react-native';
 import { getCharactersList, getCharacter } from '../reducer';
 
@@ -19,15 +19,14 @@ export default function CharacterList({navigation}){
     useEffect(()=> {
         getData();
     }, [])
-
-    useEffect(()=> {
-       // console.log($characters.results);
-    }, [$characters])
-
-
+  
     //Utils ------
-    const getData = () => {
-        dispatch(getCharactersList());
+    const getData = (url) => {
+        dispatch(getCharactersList(url));
+    }
+
+    const onRefresh = () => {
+        getData();
     }
 
     const isFavorite=(item)=>{
@@ -37,8 +36,7 @@ export default function CharacterList({navigation}){
     const onItemPress = (item) => {
         dispatch(getCharacter(item.url));
         navigation.navigate('CharacterDetail');
-      }
-
+    }
     
     return(
         <SafeAreaView style={styles.container}>
@@ -46,13 +44,15 @@ export default function CharacterList({navigation}){
             <FlatList
                 data={$characters.results}
                 refreshing={$isLoading}
-                onRefresh={getData}
+                onRefresh={onRefresh}
                 renderItem={({item}) => (
-                            <ListItemContainer onPress={() => onItemPress(item)}>
-                                <CharacterItem character={item} favorite={isFavorite(item)}/>
-                            </ListItemContainer>
-                            )}
+                    <ListItemContainer onPress={() => onItemPress(item)}>
+                        <CharacterItem character={item} favorite={isFavorite(item)}/>
+                    </ListItemContainer>
+                    )}
                 keyExtractor={item => item.name}
+                onEndReached={() => getData($characters.next)}
+                onEndReachedThreshold={1}
             />
         </SafeAreaView>
     )

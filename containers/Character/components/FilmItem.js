@@ -5,7 +5,7 @@ export default function FilmItem({film}){
 
     return(
         <View style={styles.row}> 
-            <Text style={styles.item}>{film.name}</Text>
+            <Text style={styles.item}>{film.title}</Text>
         </View>          
     )
 }
