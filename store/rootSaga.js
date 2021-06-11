@@ -8,6 +8,7 @@ const api = Api.create();
 
 export default function * root() {
     yield all([
-        takeLatest(CharacterTypes.REQUEST_CHARACTERS, Character.getCharacters, api)
+        takeLatest(CharacterTypes.REQUEST_CHARACTERS_LIST, Character.getCharactersList, api),
+        takeLatest(CharacterTypes.REQUEST_CHARACTER, Character.getCharacter, api)
     ])
 }

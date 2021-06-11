@@ -7,7 +7,6 @@ const create = (baseURL = '') => {
             baseURL,
             headers: { 
                 "X-Requested-With": "XMLHttpRequest",
-                "React-Request": "partial/ajax"
             } , 
         }
     );
