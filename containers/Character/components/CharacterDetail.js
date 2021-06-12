@@ -37,6 +37,11 @@ export default function CharacterDetail(){
     return(
         
         <SafeAreaView style={styles.container}>
+            {!$characterSelected.name && ( 
+                <View style={styles.loading}>
+                    <Text>Carregando...</Text>
+                </View>
+            )} 
             <ScrollView>
                 <ActivityIndicator hidesWhenStopped animating={$isLoading} size="small"/>
                 {$characterSelected.name && (  
@@ -73,7 +78,7 @@ export default function CharacterDetail(){
                             
                         </View>
                     </View>
-                )}  
+                )}
             </ScrollView>
         </SafeAreaView>
         
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingBottom: 10,
-      marginBottom: 10
+      marginBottom: 10,
     },
     title :{
         paddingBottom: 10,
@@ -130,6 +135,11 @@ const styles = StyleSheet.create({
         borderTopColor: '#fff',
         borderBottomWidth: 1,
         marginVertical: 10
+    },
+    loading: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height:'100%'
     }
   });
   

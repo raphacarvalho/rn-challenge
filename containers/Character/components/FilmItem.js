@@ -5,16 +5,20 @@ import { useState, useEffect} from 'react';
 
 export default function FilmItem({url}){
 
+    const isMounted = React.useRef(true)
     const [film, setFilm] = useState({})
 
     useEffect(()=> {
+        isMounted.current = true;
        getFilm();
+       return () => (isMounted.current = false);
     }, [])
 
     const getFilm = async () => {
         try {
-            let response = await api.create().get(url)
-            setFilm(response.data);  
+            let response = await api.create().get(url);
+            if(isMounted.current)
+                setFilm(response.data);  
         } catch (error) { 
         } 
       }
