@@ -1,14 +1,37 @@
 import React from 'react';
+import api from '../../../api'
 import { StyleSheet, View, Text } from 'react-native';
+import { useState, useEffect} from 'react';
 
-export default function FilmItem({film}){
+export default function FilmItem({url}){
+
+    const [film, setFilm] = useState({})
+
+    useEffect(()=> {
+       getFilm();
+    }, [])
+
+    const getFilm = async () => {
+        try {
+            let response = await api.create().get(url)
+            setFilm(response.data);  
+        } catch (error) { 
+        } 
+      }
+
 
     return(
         <View style={styles.container}>
-            <View style={styles.row}> 
-                <Text style={styles.item}>{film.title}</Text>
-                <Text style={styles.ano}>{film.release_date.split('-')[0]}</Text>
-            </View>  
+            {film.title && (
+                <View style={styles.row}> 
+                    <Text style={styles.item}>{film.title}</Text>
+                    <Text style={styles.ano}>{film.release_date.split('-')[0]}</Text>
+                </View>  
+            )}
+            {!film.title && (
+               <Text style={styles.item}>Carregando...</Text> 
+            )}
+           
         </View>          
     )
 }

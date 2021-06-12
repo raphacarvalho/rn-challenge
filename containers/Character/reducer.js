@@ -4,8 +4,7 @@ const initialState = {
     characters : {results: []},
     characterSelected: {},
     isLoading: false,
-    favorites: [],
-    films: []
+    favorites: []
 }
 
 export const REQUEST_CHARACTERS_LIST = 'character/REQUEST_CHARACTERS_LIST';
@@ -28,10 +27,6 @@ export const clearCharactersList = createAction(CLEAR_CHARACTERS_LIST);
 export const getCharacter = createAction(REQUEST_CHARACTER, url => ({url}));
 export const setCharacter = createAction(SET_CHARACTER);
 
-export const getFilm = createAction(REQUEST_FILM, url => ({url}));
-export const setFilm = createAction(SET_FILM);
-export const clearFilms = createAction(CLEAR_FILMS);
-
 export const toggleFavorite = createAction(TOGGLE_FAVORITE);
 
 const characterReducer = handleActions({
@@ -40,9 +35,6 @@ const characterReducer = handleActions({
     [clearCharactersList] : state => ({ ...state, characters: {results:[]}}),
     [getCharacter] : state => ({...state, characterSelected: {}, isLoading: true}),
     [setCharacter] : (state, {payload}) => ({...state, characterSelected: payload, isLoading: false}),
-    [getFilm] : state => ({...state, isLoading: true}),
-    [setFilm] : (state, {payload}) => ({...state, films: [...state.films, payload], isLoading: false}),
-    [clearFilms] :  state  => ({...state, films:[]}),
     [toggleFavorite] :  (state, {payload})  => {
         let newFavorites = [...state.favorites];
         newFavorites.includes(payload) ? newFavorites.splice(newFavorites.indexOf(payload), 1) :  newFavorites.push(payload)  

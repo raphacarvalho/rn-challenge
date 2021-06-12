@@ -2,33 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, SafeAreaView, ActivityIndicator, ScrollView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect} from 'react';
 import ListItemContainer from '../../../commons/components/ListItemContainer';
 import FilmItem from './FilmItem';
-import { toggleFavorite, getFilm, clearFilms } from '../reducer';
+import { toggleFavorite } from '../reducer';
 
 export default function CharacterDetail(){
 
     const dispatch = useDispatch();
     const $characterSelected = useSelector(state => state.characterReducer.characterSelected);
-    const $films = useSelector(state => state.characterReducer.films);
     const $isLoading = useSelector(state => state.characterReducer.isLoading);
     const $favorites = useSelector(state => state.characterReducer.favorites);
-   
-    useEffect(()=>{
-       return () => dispatch(clearFilms())
-    }, [])
-
-    useEffect(()=>{
-        //console.log('fav', $favorites);
-     }, [$favorites])
-
-    useEffect(()=>{
-        if($characterSelected.films){
-            $characterSelected.films.forEach(f =>  dispatch(getFilm(f)) 
-        )}
-
-    }, [$characterSelected])
 
     const onPressFavorite=()=>{
         dispatch(toggleFavorite($characterSelected.name))
@@ -82,9 +65,9 @@ export default function CharacterDetail(){
 
                         <Text style={styles.title}>Filmes</Text>
                         <View style={styles.noCard}> 
-                            {$films.map((item) => (
-                                <ListItemContainer key={item.url}>
-                                    <FilmItem film={item}/>
+                            {$characterSelected.films.map((url) => (
+                                <ListItemContainer key={url}>
+                                    <FilmItem url={url}/>
                                 </ListItemContainer>
                             ))}
                             

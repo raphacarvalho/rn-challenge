@@ -21,20 +21,8 @@ export function * getCharactersList(api, {payload}){
 
 export function * getCharacter(api, {payload}){
     try {
-        
         const {data} = yield call(api.get, payload.url);
         yield put(Actions.setCharacter(data));   
-
-    } catch (e) {
-        e.response ? console.log(e.response.data) : e.message;
-    }
-}
-
-export function * getFilm(api, {payload}){
-    try {
-        
-        const {data} = yield call(api.get, payload.url);
-        yield put(Actions.setFilm(data));   
 
     } catch (e) {
         e.response ? console.log(e.response.data) : e.message;
