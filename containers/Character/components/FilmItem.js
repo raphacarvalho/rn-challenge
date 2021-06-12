@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function FilmItem({film}){
 
     return(
-        <View style={styles.row}> 
+        <View key={film.url} style={styles.row}> 
             <Text style={styles.item}>{film.title}</Text>
         </View>          
     )
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     item : {
-        fontSize: 17,
+        fontSize: 15,
         color: '#444444'    
     },
     container:{

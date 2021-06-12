@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export default function CharacterItem({character, favorite}){
+
 
     return(
         <View style={styles.row}> 

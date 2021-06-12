@@ -19,6 +19,8 @@ export const REQUEST_FILM = 'character/REQUEST_FILME';
 export const SET_FILM = 'character/SET_FILM';
 export const CLEAR_FILMS = 'character/CLEAR_FILMS';
 
+export const TOGGLE_FAVORITE = 'character/TOGGLE_FAVORITE';
+
 export const getCharactersList = createAction(REQUEST_CHARACTERS_LIST, url => ({url}));
 export const setCharactersList = createAction(SET_CHARACTERS_LIST);
 export const clearCharactersList = createAction(CLEAR_CHARACTERS_LIST);
@@ -30,7 +32,7 @@ export const getFilm = createAction(REQUEST_FILM, url => ({url}));
 export const setFilm = createAction(SET_FILM);
 export const clearFilms = createAction(CLEAR_FILMS);
 
-
+export const toggleFavorite = createAction(TOGGLE_FAVORITE);
 
 const characterReducer = handleActions({
     [getCharactersList] : state => ({ ...state, isLoading: true }),
@@ -41,6 +43,11 @@ const characterReducer = handleActions({
     [getFilm] : state => ({...state, isLoading: true}),
     [setFilm] : (state, {payload}) => ({...state, films: [...state.films, payload], isLoading: false}),
     [clearFilms] :  state  => ({...state, films:[]}),
+    [toggleFavorite] :  (state, {payload})  => {
+        let newFavorites = [...state.favorites];
+        newFavorites.includes(payload) ? newFavorites.splice(newFavorites.indexOf(payload), 1) :  newFavorites.push(payload)  
+        return ({...state, favorites: newFavorites})
+    },
 }, initialState);
 
 export default characterReducer;
