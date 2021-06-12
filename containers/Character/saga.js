@@ -11,8 +11,8 @@ export function * getCharactersList(api, {payload}){
             yield put(Actions.clearCharactersList()); 
             url = urlBase;
         } 
-        const response = yield call(api.get, url);
-        yield put(Actions.setCharactersList(response.data));   
+        const {data} = yield call(api.get, url);
+        yield put(Actions.setCharactersList(data));   
 
     } catch (e) {
         e.response ? console.log(e.response.data) : e.message;
@@ -22,8 +22,19 @@ export function * getCharactersList(api, {payload}){
 export function * getCharacter(api, {payload}){
     try {
         
-        const response = yield call(api.get, payload.url);
-        yield put(Actions.setCharacter(response.data));   
+        const {data} = yield call(api.get, payload.url);
+        yield put(Actions.setCharacter(data));   
+
+    } catch (e) {
+        e.response ? console.log(e.response.data) : e.message;
+    }
+}
+
+export function * getFilm(api, {payload}){
+    try {
+        
+        const {data} = yield call(api.get, payload.url);
+        yield put(Actions.setFilm(data));   
 
     } catch (e) {
         e.response ? console.log(e.response.data) : e.message;

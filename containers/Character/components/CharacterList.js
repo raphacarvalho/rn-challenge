@@ -51,8 +51,8 @@ export default function CharacterList({navigation}){
                     </ListItemContainer>
                     )}
                 keyExtractor={item => item.name}
-                onEndReached={() => getData($characters.next)}
-                onEndReachedThreshold={1}
+                onEndReached={() =>  getData($characters.next)}
+                onEndReachedThreshold={0.1}
             />
         </SafeAreaView>
     )
