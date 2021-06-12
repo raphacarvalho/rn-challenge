@@ -42,6 +42,7 @@ export default function CharacterList({navigation}){
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Selecione um personagem</Text>
             <FlatList
+                style={styles.list}
                 data={$characters.results}
                 refreshing={$isLoading}
                 onRefresh={onRefresh}
@@ -64,9 +65,13 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#f0f0f0',
     },
-    title :{
+    title: {
         padding:10,
-        fontSize: 15
+        fontSize: 17,
+        color: '#888888'
+    },
+    list: {
+        paddingHorizontal: 10
     }
   });
   

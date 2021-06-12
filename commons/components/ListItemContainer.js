@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 25,
       backgroundColor: '#fff',
-      borderRadius: 2,
+      borderRadius: 6,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 0 },
       shadowOpacity: 0.75,

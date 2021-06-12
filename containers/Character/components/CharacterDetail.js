@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, FlatList, ActivityIndicator, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ActivityIndicator, ScrollView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect} from 'react';
@@ -45,12 +45,11 @@ export default function CharacterDetail(){
                     <View>
                         <Text style={styles.label}>{label}</Text>
                         <Text style={styles.info}>{info}</Text>
+                        <View style={styles.divider}/>
                     </View>
                 )}
-                
             </> 
         )}
-    
 
     return(
         
@@ -69,7 +68,8 @@ export default function CharacterDetail(){
                                 <Info label="Cabelo" info={$characterSelected.hair_color}/>
                                 <Info label="Pele" info={$characterSelected.skin_color}/>
                                 <Info label="Cor dos olhos" info={$characterSelected.eye_color}/>
-
+                                <Info label="Ano de Nascimento" info={$characterSelected.birth_year}/>
+                                <Info label="Gênero" info={$characterSelected.gender}/>
                                 <Icon
                                     style={styles.favorite}
                                     onPress={onPressFavorite}
@@ -83,7 +83,7 @@ export default function CharacterDetail(){
                         <Text style={styles.title}>Filmes</Text>
                         <View style={styles.noCard}> 
                             {$films.map((item) => (
-                                <ListItemContainer>
+                                <ListItemContainer key={item.url}>
                                     <FilmItem film={item}/>
                                 </ListItemContainer>
                             ))}
@@ -100,11 +100,14 @@ export default function CharacterDetail(){
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      paddingBottom: 10,
+      marginBottom: 10
     },
     title :{
         paddingBottom: 10,
         marginLeft: 15,
-        fontSize: 18
+        fontSize: 17,
+        color: '#888888'
     },
     label:{
         fontSize: 12,
@@ -112,8 +115,7 @@ const styles = StyleSheet.create({
     },
     info:{
         fontSize: 18,
-        color: '#000',
-        marginBottom: 15
+        color: '#444444'
     },
     favorite: {
         position: 'absolute',
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
       marginHorizontal: 15,
       marginBottom: 10,
       backgroundColor: '#fff',
-      borderRadius: 2,
+      borderRadius: 6,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 0 },
       shadowOpacity: 0.75,
@@ -138,6 +140,13 @@ const styles = StyleSheet.create({
     },
     noCard: {
       paddingHorizontal: 10,
+    },
+    divider: {
+        width: '100%',
+        borderBottomColor: '#ebedf0',
+        borderTopColor: '#fff',
+        borderBottomWidth: 1,
+        marginVertical: 10
     }
   });
   

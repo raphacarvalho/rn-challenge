@@ -6,22 +6,44 @@ export default function CharacterItem({character, favorite}){
 
 
     return(
-        <View style={styles.row}> 
-            <Text style={styles.item}>{character.name}</Text>
-        </View>          
+        <View style={styles.container}>
+            <View style={styles.row}> 
+                <Icon
+                    style={styles.favorite}
+                    name={favorite ? 'star' : 'staro'} 
+                    size={20} 
+                    color={favorite ? '#ffbd43' : '#888888'}
+                />
+                <Text style={styles.item}>{character.name}</Text>
+                <Icon
+                    style={styles.arrow}
+                    name="right" 
+                    size={20} 
+                    color="#1d73bf"
+                />
+            </View>  
+        </View>        
     )
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1,
+    },
+    row:{
+        flexDirection: 'row'
+    },
     favorito : {
-        marginRight: 10
+        width: '10%'
     },
     item : {
         fontSize: 17,
-        color: '#444444'    
+        color: '#444444',
+        marginLeft: 20,
+        width: '80%'
     },
-    container:{
-      flexDirection: 'row'
+    arrow :{
+        width: '10%'
     }
 });
   
