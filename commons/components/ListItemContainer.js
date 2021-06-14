@@ -19,9 +19,8 @@ export default function ListItemContainer({onPress, children}){
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 2,
+        marginVertical: 2,
         marginHorizontal: 5,
-        marginBottom: 2
     }, 
     body: {
       flex: 1,

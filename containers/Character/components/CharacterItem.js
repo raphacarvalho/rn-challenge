@@ -11,15 +11,15 @@ export default function CharacterItem({character, favorite}){
                 <Icon
                     style={styles.favorite}
                     name={favorite ? 'star' : 'staro'} 
-                    size={20} 
                     color={favorite ? '#ffbd43' : '#888888'}
+                    size={20} 
                 />
                 <Text style={styles.item}>{character.name}</Text>
                 <Icon
                     style={styles.arrow}
+                    color="#1d73bf"
                     name="right" 
                     size={20} 
-                    color="#1d73bf"
                 />
             </View>  
         </View>        
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     },
     item : {
         fontSize: 17,
-        color: '#444444',
         marginLeft: 20,
+        color: '#444444',
         width: '80%'
     },
     arrow :{

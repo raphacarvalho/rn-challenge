@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, ActivityIndicator, ScrollView, View } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, Text, SafeAreaView, ActivityIndicator, ScrollView, View } from 'react-native';
 import ListItemContainer from '../../../commons/components/ListItemContainer';
+import Icon from 'react-native-vector-icons/AntDesign';
 import FilmItem from './FilmItem';
 import { toggleFavorite } from '../reducer';
 
@@ -62,8 +62,8 @@ export default function CharacterDetail(){
                                     style={styles.favorite}
                                     onPress={onPressFavorite}
                                     name={isFavorite() ? 'star' : 'staro'} 
-                                    size={40} 
                                     color={isFavorite() ? '#ffbd43' : '#888888'}
+                                    size={40} 
                                 />
                             </View>
                         </View>

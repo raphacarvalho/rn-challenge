@@ -14,10 +14,6 @@ export const CLEAR_CHARACTERS_LIST = 'character/CLEAR_CHARACTERS_LIST';
 export const REQUEST_CHARACTER = 'character/REQUEST__CHARACTER';
 export const SET_CHARACTER = 'character/SET_CHARACTER';
 
-export const REQUEST_FILM = 'character/REQUEST_FILME';
-export const SET_FILM = 'character/SET_FILM';
-export const CLEAR_FILMS = 'character/CLEAR_FILMS';
-
 export const TOGGLE_FAVORITE = 'character/TOGGLE_FAVORITE';
 
 export const getCharactersList = createAction(REQUEST_CHARACTERS_LIST, url => ({url}));
